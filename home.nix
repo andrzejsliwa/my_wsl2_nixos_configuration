@@ -155,8 +155,6 @@ in {
         #     insteadOf = "https://gitlab.com";
         #   };
         # };
-        credential.helper = "${lib.getExe pkgs.git-credential-manager}";
-        credential.credentialStore = "secretservice";
         push = {
           default = "current";
           autoSetupRemote = true;
