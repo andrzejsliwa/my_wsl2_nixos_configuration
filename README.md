@@ -50,7 +50,7 @@ customize to your liking both by removing and adding tools that you prefer.
 - [`direnv`](https://github.com/direnv/direnv) is integrated into `fish` by
   default
 - `git` config is generated in [home.nix](home.nix) with options provided to
-  enable private HTTPS clones with secret tokens
+  enable private repos (authenticate first with `gh auth login`)
 - `fish` config is generated in [home.nix](home.nix) and includes git aliases,
   useful WSL aliases
 

@@ -18,6 +18,7 @@
     findutils
     fx
     git
+    lazygit
     git-crypt
     htop
     jq
@@ -155,15 +156,40 @@ in {
         #     insteadOf = "https://gitlab.com";
         #   };
         # };
+	credential = {
+	  helper = "${pkgs.gh}/bin/gh auth git-credential";
+	};
+	include = {
+	  path = "user";
+	};
+        core = {
+	  autocrlf = "input";
+	};
+        alias = {
+	  co = "checkout";
+          st = "status";
+          pushf = "push --force-with-lease";
+          pullm = "pull origin main";
+        };
+        init = {
+          defaultBranch = "main";
+        };
         push = {
           default = "current";
           autoSetupRemote = true;
         };
-        merge = {
-          conflictstyle = "diff3";
+	pull = {
+          rebase = "true";
+	};
+	fetch = {
+          prune = "true";
         };
-        diff = {
-          colorMoved = "default";
+	rebase = {
+          autoSquash = "true";
+          autoStash = "true";
+        };
+	merge = {
+          conflictStyle = "diff3";
         };
       };
     };
