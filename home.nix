@@ -4,6 +4,7 @@
   pkgs,
   username,
   nix-index-database,
+  lib,
   ...
 }: let
   unstable-packages = with pkgs.unstable; [
@@ -42,6 +43,7 @@
 
     # key tools
     gh # for bootstrapping
+    git-credential-manager
     just
 
     # core languages
@@ -141,8 +143,8 @@ in {
         side-by-side = true;
         navigate = true;
       };
-      userEmail = ""; # FIXME: set your git email
-      userName = ""; #FIXME: set your git username
+      userEmail = "andrzej.sliwa@gmail.com"; # FIXME: set your git email
+      userName = "andrzejsliwa"; #FIXME: set your git username
       extraConfig = {
         # FIXME: uncomment the next lines if you want to be able to clone private https repos
         # url = {
@@ -153,6 +155,8 @@ in {
         #     insteadOf = "https://gitlab.com";
         #   };
         # };
+        credential.helper = "${lib.getExe pkgs.git-credential-manager}";
+        credential.credentialStore = "secretservice";
         push = {
           default = "current";
           autoSetupRemote = true;
