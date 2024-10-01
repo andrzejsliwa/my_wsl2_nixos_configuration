@@ -58,12 +58,19 @@
     startMenuLaunchers = true;
 
     # Enable integration with Docker Desktop (needs to be installed)
-    docker-desktop.enable = false;
+    docker-desktop.enable = true;
   };
 
+  wsl.extraBin = with pkgs; [
+    {src = "${uutils-coreutils-noprefix}/bin/cat";}
+    {src = "${uutils-coreutils-noprefix}/bin/whoami";}
+    {src = "${busybox}/bin/addgroup";}
+    {src = "${su}/bin/groupadd";}
+  ];
+
   virtualisation.docker = {
-    enable = true;
-    enableOnBoot = true;
+    enable = false;
+    enableOnBoot = false;
     autoPrune.enable = true;
   };
 

@@ -33,6 +33,7 @@
     vim
     wget
     zip
+    devenv
   ];
 
   stable-packages = with pkgs; [
