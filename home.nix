@@ -5,6 +5,7 @@
   username,
   nix-index-database,
   lib,
+  config,
   ...
 }: let
   unstable-packages = with pkgs.unstable; [
@@ -30,6 +31,7 @@
     tmux
     tree
     unzip
+    neovim
     vim
     wget
     zip
@@ -41,7 +43,7 @@
 
     # FIXME: you can add plugins, change keymaps etc using (jeezyvim.nixvimExtend {})
     # https://github.com/LGUG2Z/JeezyVim#extending
-    jeezyvim
+    # jeezyvim
 
     # key tools
     gh # for bootstrapping
@@ -50,6 +52,8 @@
 
     # core languages
     rustup
+    gcc
+    lua
 
     # rust stuff
     cargo-cache
@@ -100,6 +104,28 @@ in {
       # pkgs.some-package
       # pkgs.unstable.some-other-package
     ];
+
+  # home.file = {
+  #   ".config/nvim" = {
+  #    source = config.lib.file.mkOutOfStoreSymlink ./nvim;
+  #  };
+  #};
+
+  programs.neovim = {
+    enable = true;
+    withNodeJs = true;
+    withRuby = true;
+    withPython3 = true;
+
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+    defaultEditor = true;
+  };
+  xdg.configFile.nvim.source = ./nvim;
+  # home.sessionVariables = {
+  #  EDITOR = "nvim";
+  # };
 
   programs = {
     home-manager.enable = true;
