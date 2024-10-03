@@ -17,8 +17,8 @@
     du-dust
     fd
     findutils
-    fx
     git
+    fx
     lazygit
     git-crypt
     htop
@@ -51,9 +51,14 @@
     just
 
     # core languages
-    rustup
+    # rustup
     gcc
     lua
+    go 
+    cargo
+    nodejs_22
+    ruby
+    python3
 
     # rust stuff
     cargo-cache
@@ -78,6 +83,7 @@
     shellcheck
     shfmt
     statix # nix
+    # nh
   ];
 in {
   imports = [
@@ -183,17 +189,17 @@ in {
         #     insteadOf = "https://gitlab.com";
         #   };
         # };
-	credential = {
-	  helper = "${pkgs.gh}/bin/gh auth git-credential";
-	};
-	include = {
-	  path = "user";
-	};
-        core = {
-	  autocrlf = "input";
-	};
-        alias = {
-	  co = "checkout";
+	    credential = {
+	      helper = "${pkgs.gh}/bin/gh auth git-credential";
+	    };
+	    include = {
+	      path = "user";
+	    };
+      core = {
+	      autocrlf = "input";
+	    };
+      alias = {
+	      co = "checkout";
           st = "status";
           pushf = "push --force-with-lease";
           pullm = "pull origin main";
@@ -205,17 +211,17 @@ in {
           default = "current";
           autoSetupRemote = true;
         };
-	pull = {
+	      pull = {
           rebase = "true";
-	};
-	fetch = {
+	      };
+	      fetch = {
           prune = "true";
         };
-	rebase = {
+	      rebase = {
           autoSquash = "true";
           autoStash = "true";
         };
-	merge = {
+	      merge = {
           conflictStyle = "diff3";
         };
       };
