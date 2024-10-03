@@ -156,7 +156,6 @@ in {
     vimdiffAlias = true;
     defaultEditor = true;
   };
-  xdg.configFile.nvim.source = ./nvim;
 
   programs = {
     home-manager.enable = true;
@@ -247,7 +246,6 @@ in {
       style = "compact";
       sync_frequency = "10m";
       fuzzy_search_syntax = "fuzzy-match";
-      invert = "true";
       inline_height = "10";
       show_preview = "true";
     };
@@ -334,4 +332,11 @@ in {
       ];
     };
   };
+
+   xdg.configFile.nvim.source = ./nvim;
+
+  # home.file.".config/nvim" = {
+  #  source = ./nvim;
+  #  recursive = true;
+  # };
 }
