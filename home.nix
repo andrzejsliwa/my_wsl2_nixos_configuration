@@ -109,6 +109,7 @@
     shfmt
     statix # nix
 
+    atuin
    # nh
   ];
 in {
@@ -240,6 +241,18 @@ in {
       };
     };
 
+    atuin.enable = true;
+    atuin.settings = {
+      auto_sync = "true";
+      style = "compact";
+      sync_frequency = "10m";
+      fuzzy_search_syntax = "fuzzy-match";
+      invert = "true";
+      inline_height = "10";
+      show_preview = "true";
+    };
+    atuin.enableFishIntegration = true;
+
     fish = {
       enable = true;
       # run 'scoop install win32yank' on Windows, then add this line with your Windows username to the bottom of interactiveShellInit
@@ -256,9 +269,9 @@ in {
           + "/extras/kanagawa.fish")}
         # enable rbenv  
         status --is-interactive; and rbenv init - fish | source
-        set -U fish_greeting
+        # set -U fish_greeting
         fish_add_path --append /mnt/c/Users/Andrzej/scoop/apps/win32yank/0.1.1
-      '';
+     '';
       functions = {
         refresh = "source $HOME/.config/fish/config.fish";
         take = ''mkdir -p -- "$1" && cd -- "$1"'';
