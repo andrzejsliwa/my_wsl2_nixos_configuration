@@ -266,6 +266,7 @@ in {
           + "/extras/kanagawa.fish")}
         # enable rbenv  
         status --is-interactive; and rbenv init - fish | source
+        nh completions --shell fish | source
         # set -U fish_greeting
         fish_add_path --append /mnt/c/Users/Andrzej/scoop/apps/win32yank/0.1.1
      '';
