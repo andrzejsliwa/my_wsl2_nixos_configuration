@@ -110,7 +110,7 @@
     statix # nix
 
     atuin
-   # nh
+    nh
   ];
 in {
   imports = [
@@ -126,8 +126,8 @@ in {
     sessionVariables.EDITOR = "nvim";
     sessionVariables.LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:${libPath}";
     sessionVariables.C_INCLUDE_PATH = "${openssl1_1.dev.outPath}/include:${pkgs.zlib.dev.outPath}/include";
-
     sessionVariables.SHELL = "/etc/profiles/per-user/${username}/bin/fish";
+    sessionVariables.FLAKE = "/home/andrzejsliwa/configuration";
   };
 
   home.packages =
@@ -144,7 +144,6 @@ in {
   #    source = config.lib.file.mkOutOfStoreSymlink ./nvim;
   #  };
   #};
-
   programs.neovim = {
     enable = true;
     withNodeJs = true;
