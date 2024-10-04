@@ -111,6 +111,7 @@
 
     atuin
     nh
+    superfile
   ];
 in {
   imports = [
@@ -271,6 +272,7 @@ in {
         fish_add_path --append /mnt/c/Users/Andrzej/scoop/apps/win32yank/0.1.1
      '';
       functions = {
+        sf = "superfile";
         refresh = "source $HOME/.config/fish/config.fish";
         take = ''mkdir -p -- "$1" && cd -- "$1"'';
         ttake = "cd $(mktemp -d)";
