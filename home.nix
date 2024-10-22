@@ -46,12 +46,12 @@
     tmux
     tree
     unzip
-    neovim
-    vim
     wget
     zip
     devenv
     speedtest-cli
+    python3
+    neovim
   ];
 
   stable-packages = with pkgs; [
@@ -68,7 +68,6 @@
     cargo
     nodejs_22
     ruby
-    python3
 
     # ruby related
     ruby-build
@@ -152,10 +151,8 @@ in {
   #  };
   #};
   programs.neovim = {
+    package = pkgs.unstable.neovim-unwrapped;
     enable = true;
-    withNodeJs = true;
-    withRuby = true;
-    withPython3 = true;
 
     viAlias = true;
     vimAlias = true;
@@ -276,7 +273,7 @@ in {
         nh completions --shell fish | source
         # set -U fish_greeting
         fish_add_path --append /mnt/c/Users/Andrzej/scoop/apps/win32yank/0.1.1
-     '';
+      '';
       functions = {
         sf = "superfile";
         refresh = "source $HOME/.config/fish/config.fish";
@@ -342,9 +339,4 @@ in {
   };
 
    xdg.configFile.nvim.source = ./nvim;
-
-  # home.file.".config/nvim" = {
-  #  source = ./nvim;
-  #  recursive = true;
-  # };
 }
