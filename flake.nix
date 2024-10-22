@@ -26,7 +26,6 @@
         config = {
           allowUnfree = true;
           permittedInsecurePackages = [
-            # FIXME:: add any insecure packages you absolutely need here
           ];
         };
 

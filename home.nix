@@ -10,14 +10,16 @@
 }: let
   # custom ruby-build package
   ruby-build = pkgs.callPackage ./pkgs/ruby-build.nix { };
+  my-font = pkgs.callPackage ./pkgs/my-font.nix { };
+
 
   # ignore volunrability warning for deprecated openssl_1_1
-  ignoringVulns = x: x // { meta = (x.meta // { knownVulnerabilities = []; }); };
-  openssl1_1 = pkgs.openssl_1_1.overrideAttrs ignoringVulns;
+  # ignoringVulns = x: x // { meta = (x.meta // { knownVulnerabilities = []; }); };
+  # openssl1_1 = pkgs.openssl_1_1.overrideAttrs ignoringVulns;
 
-  # list libraries paths for compilation of Ruby 
+  # list libraries paths for compilation of Ruby
   libPath = lib.makeLibraryPath [
-    openssl1_1.out
+    # openssl1_1.out
     pkgs.glibc
     pkgs.zlib
   ];
@@ -48,7 +50,8 @@
     vim
     wget
     zip
-    devenv 
+    devenv
+    speedtest-cli
   ];
 
   stable-packages = with pkgs; [
@@ -61,18 +64,18 @@
     # rustup
     gcc
     lua
-    go 
+    go
     cargo
     nodejs_22
     ruby
     python3
 
-    # ruby related 
+    # ruby related
     ruby-build
     rbenv
-    openssl1_1
+    # openssl1_1
     zlib
- 
+
     bison
     flex
     fontforge
@@ -112,6 +115,8 @@
     atuin
     nh
     superfile
+    tilt
+    neofetch
   ];
 in {
   imports = [
@@ -125,8 +130,9 @@ in {
     homeDirectory = "/home/${username}";
 
     sessionVariables.EDITOR = "nvim";
+    sessionVariables.BROWSER = "/mnt/c/Progra~1/Google/Chrome/Application/chrome.exe"; # wsl
     sessionVariables.LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:${libPath}";
-    sessionVariables.C_INCLUDE_PATH = "${openssl1_1.dev.outPath}/include:${pkgs.zlib.dev.outPath}/include";
+    # sessionVariables.C_INCLUDE_PATH = "${openssl1_1.dev.outPath}/include:${pkgs.zlib.dev.outPath}/include";
     sessionVariables.SHELL = "/etc/profiles/per-user/${username}/bin/fish";
     sessionVariables.FLAKE = "/home/andrzejsliwa/configuration";
   };
@@ -199,8 +205,8 @@ in {
         side-by-side = true;
         navigate = true;
       };
-      userEmail = "andrzej.sliwa@gmail.com"; # FIXME: set your git email
-      userName = "andrzejsliwa"; #FIXME: set your git username
+      userEmail = "andrzej.sliwa@gmail.com";
+      userName = "andrzejsliwa";
       extraConfig = {
         credential = {
 	        helper = "${pkgs.gh}/bin/gh auth git-credential";
@@ -265,7 +271,7 @@ in {
             sha256 = "sha256-f/CUR0vhMJ1sZgztmVTPvmsAgp0kjFov843Mabdzvqo=";
           }
           + "/extras/kanagawa.fish")}
-        # enable rbenv  
+        # enable rbenv
         status --is-interactive; and rbenv init - fish | source
         nh completions --shell fish | source
         # set -U fish_greeting
