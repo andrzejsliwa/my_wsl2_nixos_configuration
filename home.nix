@@ -256,7 +256,7 @@ in {
         ttake = "cd $(mktemp -d)";
         show_path = ''
           echo $PATH | tr ' ' '
-          ''';
+          '';
         posix-source = ''
           for i in (cat $argv)
             set arr (echo $i |tr = \n)
