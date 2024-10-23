@@ -1,0 +1,212 @@
+{
+  "$help": "https://aka.ms/terminal-documentation",
+  "$schema": "https://aka.ms/terminal-profiles-schema-preview",
+  "actions": [],
+  "copyFormatting": "none",
+  "copyOnSelect": false,
+  "defaultProfile": "{4f2bf769-ff6a-4593-a1e5-1c8f25b19f1c}",
+  "keybindings": [
+    {
+      "id": null,
+      "keys": "alt+up"
+    },
+    {
+      "id": null,
+      "keys": "alt+right"
+    },
+    {
+      "id": null,
+      "keys": "ctrl+shift+w"
+    },
+    {
+      "id": null,
+      "keys": "alt+down"
+    },
+    {
+      "id": "Terminal.DuplicatePaneDown",
+      "keys": "alt+minus"
+    },
+    {
+      "id": "Terminal.ClosePane",
+      "keys": "alt+o"
+    },
+    {
+      "id": null,
+      "keys": "alt+left"
+    },
+    {
+      "id": "Terminal.DuplicatePaneAuto",
+      "keys": "alt+;"
+    },
+    {
+      "id": "Terminal.OpenNewTab",
+      "keys": "alt+enter"
+    },
+    {
+      "id": "Terminal.MoveFocusDown",
+      "keys": "alt+j"
+    },
+    {
+      "id": "Terminal.MoveFocusLeft",
+      "keys": "alt+h"
+    },
+    {
+      "id": "Terminal.MoveFocusRight",
+      "keys": "alt+l"
+    },
+    {
+      "id": "Terminal.MoveFocusUp",
+      "keys": "alt+k"
+    },
+    {
+      "id": "Terminal.MoveFocusPrevious",
+      "keys": "ctrl+alt+left"
+    },
+    {
+      "id": "Terminal.NextTab",
+      "keys": "alt+n"
+    },
+    {
+      "id": "Terminal.DuplicatePaneAuto",
+      "keys": "alt+shift+d"
+    },
+    {
+      "id": "Terminal.PrevTab",
+      "keys": "alt+p"
+    },
+    {
+      "id": "User.copy.644BA8F2",
+      "keys": "ctrl+c"
+    },
+    {
+      "id": "User.paste",
+      "keys": "ctrl+v"
+    },
+    {
+      "id": "User.find",
+      "keys": "ctrl+shift+f"
+    }
+  ],
+  "newTabMenu": [
+    {
+      "type": "remainingProfiles"
+    }
+  ],
+  "profiles": {
+    "defaults": {
+      "antialiasingMode": "grayscale",
+      "experimental.retroTerminalEffect": false,
+      "useAcrylic": true
+    },
+    "list": [
+      {
+        "colorScheme": "Catppuccin Mocha",
+        "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+        "font": {
+          "size": 18,
+          "weight": "light"
+        },
+        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+        "hidden": false,
+        "name": "Windows PowerShell"
+      },
+      {
+        "colorScheme": "Catppuccin Mocha",
+        "commandline": "%SystemRoot%\\System32\\cmd.exe",
+        "font": {
+          "size": 18,
+          "weight": "light"
+        },
+        "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+        "hidden": false,
+        "name": "Command Prompt"
+      },
+      {
+        "colorScheme": "Catppuccin Mocha",
+        "commandline": "wsl ~ -d NixOS",
+        "cursorShape": "filledBox",
+        "experimental.retroTerminalEffect": false,
+        "font": {
+          "face": "CaskaydiaMono Nerd Font Mono",
+          "size": 17
+        },
+        "guid": "{4f2bf769-ff6a-4593-a1e5-1c8f25b19f1c}",
+        "hidden": false,
+        "icon": "https://w7.pngwing.com/pngs/1005/201/png-transparent-nix-package-manager-nixos-unix-linux-linux-blue-angle-text-thumbnail.png",
+        "name": "NixOS",
+        "opacity": 95,
+        "startingDirectory": null,
+        "tabTitle": "NixOS"
+      },
+      {
+        "guid": "{4ff56d04-d9cf-57ea-bae2-ad396374e7e3}",
+        "hidden": false,
+        "name": "Ubuntu 22.04.5 LTS",
+        "source": "CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc"
+      },
+      {
+        "colorScheme": "Catppuccin Mocha",
+        "font": {
+          "face": "IosevkaTerm Nerd Font Mono",
+          "size": 18
+        },
+        "guid": "{d8e96812-b789-5068-a5ae-10b2fb53e95f}",
+        "hidden": false,
+        "name": "Ubuntu 24.04.1 LTS",
+        "source": "CanonicalGroupLimited.Ubuntu24.04LTS_79rhkp1fndgsc"
+      }
+    ]
+  },
+  "rendering.graphicsAPI": "direct3d11",
+  "schemes": [
+    {
+      "background": "#121212",
+      "black": "#45475A",
+      "blue": "#89B4FA",
+      "brightBlack": "#585B70",
+      "brightBlue": "#89B4FA",
+      "brightCyan": "#94E2D5",
+      "brightGreen": "#A6E3A1",
+      "brightPurple": "#F5C2E7",
+      "brightRed": "#F38BA8",
+      "brightWhite": "#A6ADC8",
+      "brightYellow": "#F9E2AF",
+      "cursorColor": "#F5E0DC",
+      "cyan": "#94E2D5",
+      "foreground": "#CDD6F4",
+      "green": "#A6E3A1",
+      "name": "Catppuccin Mocha",
+      "purple": "#F5C2E7",
+      "red": "#F38BA8",
+      "selectionBackground": "#585B70",
+      "white": "#BAC2DE",
+      "yellow": "#F9E2AF"
+    }
+  ],
+  "theme": "Catppuccin Mocha",
+  "themes": [
+    {
+      "name": "Catppuccin Mocha",
+      "tab": {
+        "background": "#090909FF",
+        "iconStyle": "default",
+        "showCloseButton": "always",
+        "unfocusedBackground": null
+      },
+      "tabRow": {
+        "background": "#090909FF",
+        "unfocusedBackground": "#121212FF"
+      },
+      "window": {
+        "applicationTheme": "dark",
+        "experimental.rainbowFrame": true,
+        "frame": null,
+        "unfocusedFrame": null,
+        "useMica": false
+      }
+    }
+  ],
+  "trimBlockSelection": true,
+  "trimPaste": true,
+  "useAcrylicInTabRow": true
+}
