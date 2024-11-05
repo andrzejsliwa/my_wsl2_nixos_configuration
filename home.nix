@@ -1,11 +1,16 @@
 {
-# FIXME: uncomment the next line if you want to reference your GitHub/GitLab access tokens and other secrets
-# secrets,
-pkgs, username, nix-index-database, lib, config, ... }:
-let
+  # FIXME: uncomment the next line if you want to reference your GitHub/GitLab access tokens and other secrets
+  # secrets,
+  pkgs,
+  username,
+  nix-index-database,
+  lib,
+  config,
+  ...
+}: let
   # custom ruby-build package
-  ruby-build = pkgs.callPackage ./pkgs/ruby-build.nix { };
-  my-font = pkgs.callPackage ./pkgs/my-font.nix { };
+  ruby-build = pkgs.callPackage ./pkgs/ruby-build.nix {};
+  my-font = pkgs.callPackage ./pkgs/my-font.nix {};
 
   # ignore volunrability warning for deprecated openssl_1_1
   # ignoringVulns = x: x // { meta = (x.meta // { knownVulnerabilities = []; }); };
@@ -81,6 +86,8 @@ let
     automake
     libtool
 
+    k9s
+
     # rust stuff
     cargo-cache
     cargo-expand
@@ -113,7 +120,7 @@ let
     neofetch
   ];
 in {
-  imports = [ nix-index-database.hmModules.nix-index ];
+  imports = [nix-index-database.hmModules.nix-index];
 
   home.stateVersion = "22.11";
 
@@ -122,18 +129,20 @@ in {
     homeDirectory = "/home/${username}";
 
     sessionVariables.EDITOR = "nvim";
-    sessionVariables.BROWSER =
-      "/mnt/c/Progra~1/Google/Chrome/Application/chrome.exe"; # wsl
+    sessionVariables.BROWSER = "/mnt/c/Progra~1/Google/Chrome/Application/chrome.exe"; # wsl
     sessionVariables.LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:${libPath}";
     # sessionVariables.C_INCLUDE_PATH = "${openssl1_1.dev.outPath}/include:${pkgs.zlib.dev.outPath}/include";
     sessionVariables.SHELL = "/etc/profiles/per-user/${username}/bin/fish";
     sessionVariables.FLAKE = "/home/andrzejsliwa/configuration";
   };
 
-  home.packages = stable-packages ++ unstable-packages ++ [
-    # pkgs.some-package
-    # pkgs.unstable.some-other-package
-  ];
+  home.packages =
+    stable-packages
+    ++ unstable-packages
+    ++ [
+      # pkgs.some-package
+      # pkgs.unstable.some-other-package
+    ];
 
   # home.file = {
   #   ".config/nvim" = {
@@ -177,7 +186,7 @@ in {
     lsd.enableAliases = true;
     zoxide.enable = true;
     zoxide.enableFishIntegration = true;
-    zoxide.options = [ "--cmd cd" ];
+    zoxide.options = ["--cmd cd"];
     broot.enable = true;
     broot.enableFishIntegration = true;
     direnv.enable = true;
@@ -195,27 +204,27 @@ in {
       userEmail = "andrzej.sliwa@gmail.com";
       userName = "andrzejsliwa";
       extraConfig = {
-        credential = { helper = "${pkgs.gh}/bin/gh auth git-credential"; };
-        include = { path = "user"; };
-        core = { autocrlf = "input"; };
+        credential = {helper = "${pkgs.gh}/bin/gh auth git-credential";};
+        include = {path = "user";};
+        core = {autocrlf = "input";};
         alias = {
           co = "checkout";
           st = "status";
           pushf = "push --force-with-lease";
           pullm = "pull origin main";
         };
-        init = { defaultBranch = "main"; };
+        init = {defaultBranch = "main";};
         push = {
           default = "current";
           autoSetupRemote = true;
         };
-        pull = { rebase = "true"; };
-        fetch = { prune = "true"; };
+        pull = {rebase = "true";};
+        fetch = {prune = "true";};
         rebase = {
           autoSquash = "true";
           autoStash = "true";
         };
-        merge = { conflictStyle = "diff3"; };
+        merge = {conflictStyle = "diff3";};
       };
     };
 
@@ -238,11 +247,12 @@ in {
         ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
 
         ${pkgs.lib.strings.fileContents (pkgs.fetchFromGitHub {
-          owner = "rebelot";
-          repo = "kanagawa.nvim";
-          rev = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92";
-          sha256 = "sha256-f/CUR0vhMJ1sZgztmVTPvmsAgp0kjFov843Mabdzvqo=";
-        } + "/extras/kanagawa.fish")}
+            owner = "rebelot";
+            repo = "kanagawa.nvim";
+            rev = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92";
+            sha256 = "sha256-f/CUR0vhMJ1sZgztmVTPvmsAgp0kjFov843Mabdzvqo=";
+          }
+          + "/extras/kanagawa.fish")}
         # enable rbenv
         status --is-interactive; and rbenv init - fish | source
         nh completions --shell fish | source
@@ -264,10 +274,11 @@ in {
           end
         '';
       };
-      shellAbbrs = {
-        gc = "nix-collect-garbage --delete-old";
-      }
-      # navigation shortcuts
+      shellAbbrs =
+        {
+          gc = "nix-collect-garbage --delete-old";
+        }
+        # navigation shortcuts
         // {
           ".." = "cd ..";
           "..." = "cd ../../";
@@ -294,8 +305,7 @@ in {
         jvim = "nvim";
         lvim = "nvim";
         pbcopy = "/mnt/c/Windows/System32/clip.exe";
-        pbpaste =
-          "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -command 'Get-Clipboard'";
+        pbpaste = "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -command 'Get-Clipboard'";
         explorer = "/mnt/c/Windows/explorer.exe";
       };
       plugins = [
