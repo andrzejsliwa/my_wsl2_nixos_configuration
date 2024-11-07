@@ -23,6 +23,7 @@
 
   # FIXME: uncomment the next line to enable SSH
   # services.openssh.enable = true;
+  services.pcscd.enable = true;
 
   users.users.${username} = {
     isNormalUser = true;
@@ -57,6 +58,12 @@
     wslConf.network.generateResolvConf = true;
     defaultUser = username;
     startMenuLaunchers = true;
+
+    usbip = {
+      enable = true;
+      # Replace this with the BUSID for your Yubikey
+      autoAttach = ["3-6"];
+    };
 
     # Enable integration with Docker Desktop (needs to be installed)
     docker-desktop.enable = true;

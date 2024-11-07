@@ -33,7 +33,6 @@
     findutils
     git
     fx
-    lazygit
     git-crypt
     htop
     jq
@@ -86,7 +85,12 @@
     automake
     libtool
 
-    k9s
+    usbutils
+    # libfido2
+    # pam_u2f
+    openssh
+    # gnupg
+    yubikey-manager
 
     # rust stuff
     cargo-cache
@@ -118,6 +122,8 @@
     superfile
     tilt
     neofetch
+    nix-prefetch
+    nix-prefetch-github
   ];
 in {
   imports = [nix-index-database.hmModules.nix-index];
@@ -129,6 +135,7 @@ in {
     homeDirectory = "/home/${username}";
 
     sessionVariables.EDITOR = "nvim";
+    sessionVariables.DIRENV_WARN_TIMEOUT = "1m";
     sessionVariables.BROWSER = "/mnt/c/Progra~1/Google/Chrome/Application/chrome.exe"; # wsl
     sessionVariables.LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:${libPath}";
     # sessionVariables.C_INCLUDE_PATH = "${openssl1_1.dev.outPath}/include:${pkgs.zlib.dev.outPath}/include";
@@ -167,6 +174,7 @@ in {
 
     starship.enable = true;
     starship.settings = {
+      command_timeout = 3600000;
       aws.disabled = true;
       gcloud.disabled = true;
       kubernetes.disabled = false;
@@ -228,6 +236,13 @@ in {
       };
     };
 
+    k9s.enable = true;
+    k9s.settings = {
+      k9s.ui.skin = "one-dark";
+      k9s.ui.reactive = true;
+    };
+    lazygit.enable = true;
+
     atuin.enable = true;
     atuin.settings = {
       auto_sync = "true";
@@ -258,6 +273,7 @@ in {
         nh completions --shell fish | source
         # set -U fish_greeting
         fish_add_path --append /mnt/c/Users/Andrzej/scoop/apps/win32yank/0.1.1
+        echo -e "Ready.\n█"
       '';
       functions = {
         sf = "superfile";
@@ -284,6 +300,11 @@ in {
           "..." = "cd ../../";
           "...." = "cd ../../../";
           "....." = "cd ../../../../";
+        }
+        # nh
+        // {
+          "reload!" = "git -C /home/andrzejsliwa/configuration/ add . ;nh os switch; fish";
+          "commit!" = "git -C /home/andrzejsliwa/configuration/ add . ;git -C /home/andrzejsliwa/configuration/ commit";
         }
         # git shortcuts
         // {
@@ -326,4 +347,13 @@ in {
   };
 
   xdg.configFile.nvim.source = ./nvim;
+
+  xdg.configFile."k9s/skins/one-dark.yaml".source = let
+    theme = pkgs.fetchFromGitHub {
+      owner = "derailed";
+      repo = "k9s";
+      rev = "59918d0e891876b4181d3a4e90bafea6045a2542";
+      hash = "sha256-dLMILS0dum/9sgLiYfmfBSovg5pMbsnzBzS5ybqdgOw=";
+    };
+  in "${theme}/skins/one-dark.yaml";
 }

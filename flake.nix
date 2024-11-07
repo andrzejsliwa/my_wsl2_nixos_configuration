@@ -20,30 +20,28 @@
   };
 
   outputs = inputs:
-    with inputs;
-    let
+    with inputs; let
       secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
 
-      nixpkgsWithOverlays = system:
-        (import nixpkgs rec {
-          inherit system;
+      nixpkgsWithOverlays = system: (import nixpkgs rec {
+        inherit system;
 
-          config = {
-            allowUnfree = true;
-            permittedInsecurePackages = [ ];
-          };
+        config = {
+          allowUnfree = true;
+          permittedInsecurePackages = [];
+        };
 
-          overlays = [
-            nur.overlay
+        overlays = [
+          nur.overlay
 
-            (_final: prev: {
-              unstable = import nixpkgs-unstable {
-                inherit (prev) system;
-                inherit config;
-              };
-            })
-          ];
-        });
+          (_final: prev: {
+            unstable = import nixpkgs-unstable {
+              inherit (prev) system;
+              inherit config;
+            };
+          })
+        ];
+      });
 
       configurationDefaults = args: {
         home-manager.useGlobalPkgs = true;
@@ -54,19 +52,27 @@
 
       argDefaults = {
         inherit secrets inputs self nix-index-database;
-        channels = { inherit nixpkgs nixpkgs-unstable; };
+        channels = {inherit nixpkgs nixpkgs-unstable;};
       };
 
-      mkNixosConfiguration =
-        { system ? "x86_64-linux", hostname, username, args ? { }, modules, }:
-        let specialArgs = argDefaults // { inherit hostname username; } // args;
-        in nixpkgs.lib.nixosSystem {
+      mkNixosConfiguration = {
+        system ? "x86_64-linux",
+        hostname,
+        username,
+        args ? {},
+        modules,
+      }: let
+        specialArgs = argDefaults // {inherit hostname username;} // args;
+      in
+        nixpkgs.lib.nixosSystem {
           inherit system specialArgs;
           pkgs = nixpkgsWithOverlays system;
-          modules = [
-            (configurationDefaults specialArgs)
-            home-manager.nixosModules.home-manager
-          ] ++ modules;
+          modules =
+            [
+              (configurationDefaults specialArgs)
+              home-manager.nixosModules.home-manager
+            ]
+            ++ modules;
         };
     in {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
@@ -74,7 +80,7 @@
       nixosConfigurations.nixos = mkNixosConfiguration {
         hostname = "nixos";
         username = "andrzejsliwa"; # FIXME: replace with your own username!
-        modules = [ nixos-wsl.nixosModules.wsl ./wsl.nix ];
+        modules = [nixos-wsl.nixosModules.wsl ./wsl.nix];
       };
     };
 }
