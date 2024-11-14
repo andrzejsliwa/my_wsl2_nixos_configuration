@@ -356,4 +356,18 @@ in {
       hash = "sha256-dLMILS0dum/9sgLiYfmfBSovg5pMbsnzBzS5ybqdgOw=";
     };
   in "${theme}/skins/one-dark.yaml";
+
+  xdg.dataFile."mc/skins/catppuccin.ini".source = let
+    theme = pkgs.fetchFromGitHub {
+      owner = "catppuccin";
+      repo = "mc";
+      rev = "f1c78f183764cd43e6dd4e325513ef5547a8f28f";
+      hash = "sha256-m6MO0Q35YYkTtVqG1v48U7pHcsuPmieDwU2U1ZzQcjo=";
+    };
+  in "${theme}/catppuccin.ini";
+
+  xdg.configFile."mc/ini".text = ''
+    [Midnight-Commander]
+    skin=catppuccin
+  '';
 }
