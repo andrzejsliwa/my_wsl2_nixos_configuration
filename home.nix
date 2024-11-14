@@ -119,7 +119,7 @@
     atuin
     nh
     nixfmt
-    superfile
+    mc
     tilt
     neofetch
     nix-prefetch
