@@ -110,20 +110,12 @@
 
     atuin
     nh
-    nixfmt
+    nixfmt-classic
     mc
     tilt
     neofetch
     nix-prefetch
     nix-prefetch-github
-
-    nodejs_20
-    (ruby_3_3.withPackages (
-      p:
-        with p; [
-          (bundler.override {ruby = ruby_3_3;})
-        ]
-    ))
   ];
 in {
   imports = [nix-index-database.hmModules.nix-index];
@@ -373,5 +365,13 @@ in {
   xdg.configFile."mc/ini".text = ''
     [Midnight-Commander]
     skin=catppuccin
+  '';
+
+  xdg.configFile."process-compose/settings.yaml".text = ''
+    theme: Cobalt
+    sort:
+        by: NAME
+        isReversed: false
+    disable_exit_confirmation: true
   '';
 }
