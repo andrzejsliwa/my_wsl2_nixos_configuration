@@ -124,7 +124,6 @@
     neofetch
     nix-prefetch
     nix-prefetch-github
-    _1password
   ];
 in {
   imports = [nix-index-database.hmModules.nix-index];
