@@ -124,6 +124,7 @@
     neofetch
     nix-prefetch
     nix-prefetch-github
+    _1password
   ];
 in {
   imports = [nix-index-database.hmModules.nix-index];
@@ -238,7 +239,7 @@ in {
 
     k9s.enable = true;
     k9s.settings = {
-      k9s.ui.skin = "one-dark";
+      k9s.ui.skin = "catppuccin-mocha-transparent.";
       k9s.ui.reactive = true;
     };
     lazygit.enable = true;
@@ -273,6 +274,7 @@ in {
         nh completions --shell fish | source
         # set -U fish_greeting
         fish_add_path --append /mnt/c/Users/Andrzej/scoop/apps/win32yank/0.1.1
+        fish_add_path --append /mnt/c/Users/Andrzej/AppData/Local/Microsoft/WinGet/Packages/AgileBits.1Password.CLI_Microsoft.Winget.Source_8wekyb3d8bbwe
         echo -e "Ready.\n█"
       '';
       functions = {
@@ -328,6 +330,7 @@ in {
         pbcopy = "/mnt/c/Windows/System32/clip.exe";
         pbpaste = "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -command 'Get-Clipboard'";
         explorer = "/mnt/c/Windows/explorer.exe";
+        op = "op.exe";
       };
       plugins = [
         {
@@ -348,14 +351,14 @@ in {
 
   xdg.configFile.nvim.source = ./nvim;
 
-  xdg.configFile."k9s/skins/one-dark.yaml".source = let
+  xdg.configFile."k9s/skins/catppuccin-mocha-transparent.yaml".source = let
     theme = pkgs.fetchFromGitHub {
-      owner = "derailed";
+      owner = "catppuccin";
       repo = "k9s";
-      rev = "59918d0e891876b4181d3a4e90bafea6045a2542";
-      hash = "sha256-dLMILS0dum/9sgLiYfmfBSovg5pMbsnzBzS5ybqdgOw=";
+      rev = "fdbec82284744a1fc2eb3e2d24cb92ef87ffb8b4";
+      hash = "sha256-9h+jyEO4w0OnzeEKQXJbg9dvvWGZYQAO4MbgDn6QRzM=";
     };
-  in "${theme}/skins/one-dark.yaml";
+  in "${theme}/dist/catppuccin-mocha-transparent.yaml";
 
   xdg.dataFile."mc/skins/catppuccin.ini".source = let
     theme = pkgs.fetchFromGitHub {
