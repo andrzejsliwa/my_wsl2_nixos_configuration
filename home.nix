@@ -9,20 +9,17 @@
   ...
 }: let
   # custom ruby-build package
-  ruby-build = pkgs.callPackage ./pkgs/ruby-build.nix {};
-  my-font = pkgs.callPackage ./pkgs/my-font.nix {};
-
+  # ruby-build = pkgs.callPackage ./pkgs/ruby-build.nix {};
+  # my-font = pkgs.callPackage ./pkgs/my-font.nix {};
   # ignore volunrability warning for deprecated openssl_1_1
   # ignoringVulns = x: x // { meta = (x.meta // { knownVulnerabilities = []; }); };
   # openssl1_1 = pkgs.openssl_1_1.overrideAttrs ignoringVulns;
-
   # list libraries paths for compilation of Ruby
-  libPath = lib.makeLibraryPath [
-    # openssl1_1.out
-    pkgs.glibc
-    pkgs.zlib
-  ];
-
+  #  libPath = lib.makeLibraryPath [
+  #  # openssl1_1.out
+  #  pkgs.glibc
+  #  pkgs.zlib
+  #];
   unstable-packages = with pkgs.unstable; [
     bat
     bottom
@@ -64,14 +61,9 @@
     lua
     go
     cargo
-    nodejs_22
-    ruby
 
     # ruby related
-    ruby-build
-    rbenv
     # openssl1_1
-    zlib
 
     bison
     flex
@@ -124,6 +116,14 @@
     neofetch
     nix-prefetch
     nix-prefetch-github
+
+    nodejs_20
+    (ruby_3_3.withPackages (
+      p:
+        with p; [
+          (bundler.override {ruby = ruby_3_3;})
+        ]
+    ))
   ];
 in {
   imports = [nix-index-database.hmModules.nix-index];
@@ -137,7 +137,7 @@ in {
     sessionVariables.EDITOR = "nvim";
     sessionVariables.DIRENV_WARN_TIMEOUT = "1m";
     sessionVariables.BROWSER = "/mnt/c/Progra~1/Google/Chrome/Application/chrome.exe"; # wsl
-    sessionVariables.LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:${libPath}";
+    # sessionVariables.LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:${libPath}";
     # sessionVariables.C_INCLUDE_PATH = "${openssl1_1.dev.outPath}/include:${pkgs.zlib.dev.outPath}/include";
     sessionVariables.SHELL = "/etc/profiles/per-user/${username}/bin/fish";
     sessionVariables.FLAKE = "/home/andrzejsliwa/configuration";
@@ -148,7 +148,7 @@ in {
     ++ unstable-packages
     ++ [
       (pkgs.writeShellScriptBin "op" ''
-        op.exe
+        op.exe "$@"
       '')
       # pkgs.some-package
       # pkgs.unstable.some-other-package
@@ -272,7 +272,7 @@ in {
           }
           + "/extras/kanagawa.fish")}
         # enable rbenv
-        status --is-interactive; and rbenv init - fish | source
+        # status --is-interactive; and rbenv init - fish | source
         nh completions --shell fish | source
         # set -U fish_greeting
         fish_add_path --append /mnt/c/Users/Andrzej/scoop/apps/win32yank/0.1.1
