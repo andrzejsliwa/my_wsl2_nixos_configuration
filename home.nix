@@ -47,6 +47,7 @@
     speedtest-cli
     python3
     neovim
+    jetbrains.ruby-mine
   ];
 
   stable-packages = with pkgs; [
@@ -151,6 +152,7 @@ in {
   #    source = config.lib.file.mkOutOfStoreSymlink ./nvim;
   #  };
   #};
+
   programs.neovim = {
     package = pkgs.unstable.neovim-unwrapped;
     enable = true;
@@ -324,6 +326,7 @@ in {
         pbcopy = "/mnt/c/Windows/System32/clip.exe";
         pbpaste = "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -command 'Get-Clipboard'";
         explorer = "/mnt/c/Windows/explorer.exe";
+        code = "/mnt/c/Users/Andrzej/scoop/apps/vscode/current/bin/code";
       };
       plugins = [
         {
