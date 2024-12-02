@@ -117,6 +117,7 @@
     neofetch
     nix-prefetch
     nix-prefetch-github
+    jdk21_headless
   ];
 in {
   imports = [nix-index-database.hmModules.nix-index];
@@ -377,4 +378,6 @@ in {
         isReversed: false
     disable_exit_confirmation: true
   '';
+
+  # fonts.packages = ["${/persistent/fonts}"];
 }
