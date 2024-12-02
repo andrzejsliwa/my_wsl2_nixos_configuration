@@ -328,6 +328,10 @@ in {
           "reload!" = "git -C /home/andrzejsliwa/configuration/ add . ;nh os switch; fish";
           "commit!" = "git -C /home/andrzejsliwa/configuration/ add . ;git -C /home/andrzejsliwa/configuration/ commit ; git -C /home/andrzejsliwa/configuration/ push";
         }
+        # ruby-mine
+        // {
+          "rr" = "ruby-mine-remote-dev-server run $(pwd)";
+        }
         # git shortcuts
         // {
           gapa = "git add --patch";
