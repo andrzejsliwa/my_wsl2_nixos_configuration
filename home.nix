@@ -15,11 +15,12 @@
   # ignoringVulns = x: x // { meta = (x.meta // { knownVulnerabilities = []; }); };
   # openssl1_1 = pkgs.openssl_1_1.overrideAttrs ignoringVulns;
   # list libraries paths for compilation of Ruby
-  #  libPath = lib.makeLibraryPath [
-  #  # openssl1_1.out
-  #  pkgs.glibc
-  #  pkgs.zlib
-  #];
+  libPath = lib.makeLibraryPath [
+    #  # openssl1_1.out
+    pkgs.glibc
+    pkgs.zlib
+    pkgs.libyaml
+  ];
   unstable-packages = with pkgs.unstable; [
     bat
     bottom
@@ -43,7 +44,6 @@
     unzip
     wget
     zip
-    devenv
     speedtest-cli
     python3
     neovim
@@ -131,8 +131,8 @@ in {
     sessionVariables.EDITOR = "nvim";
     sessionVariables.DIRENV_WARN_TIMEOUT = "1m";
     sessionVariables.BROWSER = "/mnt/c/Progra~1/Google/Chrome/Application/chrome.exe"; # wsl
-    # sessionVariables.LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:${libPath}";
-    # sessionVariables.C_INCLUDE_PATH = "${openssl1_1.dev.outPath}/include:${pkgs.zlib.dev.outPath}/include";
+    sessionVariables.LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:${libPath}";
+    sessionVariables.C_INCLUDE_PATH = "${pkgs.libyaml.dev.outPath}/include:${pkgs.zlib.dev.outPath}/include";
     sessionVariables.SHELL = "/etc/profiles/per-user/${username}/bin/fish";
     sessionVariables.FLAKE = "/home/andrzejsliwa/configuration";
   };
@@ -162,6 +162,22 @@ in {
     vimAlias = true;
     vimdiffAlias = true;
     defaultEditor = true;
+  };
+
+  programs.rbenv = {
+    enable = true;
+    enableFishIntegration = true;
+    plugins = [
+      {
+        name = "ruby-build";
+        src = pkgs.fetchFromGitHub {
+          owner = "rbenv";
+          repo = "ruby-build";
+          rev = "v20241105";
+          hash = "sha256-VutUrVO6+7mGNOYnK8f+2epAbaiqNboelh8MSFz0WaI=";
+        };
+      }
+    ];
   };
 
   programs = {
@@ -195,8 +211,8 @@ in {
     zoxide.options = ["--cmd cd"];
     broot.enable = true;
     broot.enableFishIntegration = true;
-    direnv.enable = true;
-    direnv.nix-direnv.enable = true;
+    direnv.enable = false;
+    direnv.nix-direnv.enable = false;
 
     git = {
       enable = true;
