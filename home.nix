@@ -48,7 +48,8 @@
     python3
     neovim
     gh
-    stylua
+    nodejs_23
+    cargo
     jetbrains.ruby-mine
   ];
 
@@ -63,7 +64,6 @@
     gcc
     lua
     go
-    cargo
 
     # ruby related
     # openssl1_1
