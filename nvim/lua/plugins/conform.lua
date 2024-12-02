@@ -6,6 +6,7 @@ return {
       nix = { "alejandra" },
       eruby = { "htmlbeautifier" },
       ruby = { "standardrb" },
+      lua = { "stylua" },
       markdown = { "markdownlint" },
       yaml = { "yamlfix" },
       javascript = { "prettierd", "prettier" },

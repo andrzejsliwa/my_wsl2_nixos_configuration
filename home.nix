@@ -47,12 +47,14 @@
     speedtest-cli
     python3
     neovim
+    gh
+    stylua
     jetbrains.ruby-mine
   ];
 
   stable-packages = with pkgs; [
     # key tools
-    gh # for bootstrapping
+    # for bootstrapping
     git-credential-manager
     just
 
@@ -153,6 +155,9 @@ in {
   #    source = config.lib.file.mkOutOfStoreSymlink ./nvim;
   #  };
   #};
+  # home.sessionPath = [
+  #  "$HOME/.local/bin"
+  #];
 
   programs.neovim = {
     package = pkgs.unstable.neovim-unwrapped;
@@ -197,7 +202,7 @@ in {
       directory.truncate_to_repo = false;
       directory.truncation_length = 8;
       python.disabled = true;
-      ruby.disabled = true;
+      ruby.disabled = false;
       hostname.ssh_only = false;
       hostname.style = "bold green";
     };
@@ -285,6 +290,8 @@ in {
         # enable rbenv
         # status --is-interactive; and rbenv init - fish | source
         nh completions --shell fish | source
+
+        set -gx NIX_LD $(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
         # set -U fish_greeting
         fish_add_path --append /mnt/c/Users/Andrzej/scoop/apps/win32yank/0.1.1
         fish_add_path --append /mnt/c/Users/Andrzej/AppData/Local/Microsoft/WinGet/Packages/AgileBits.1Password.CLI_Microsoft.Winget.Source_8wekyb3d8bbwe
