@@ -48,7 +48,7 @@
     python3
     neovim
     gh
-    nodejs_23
+    nodejs_20
     cargo
     jetbrains.ruby-mine
   ];
