@@ -39,7 +39,6 @@
     procs
     ripgrep
     sd
-    tmux
     tree
     unzip
     wget
@@ -122,7 +121,10 @@
     jdk21_headless
   ];
 in {
-  imports = [nix-index-database.hmModules.nix-index];
+  imports = [
+    nix-index-database.hmModules.nix-index
+    ./pkgs/tmux.nix
+  ];
 
   home.stateVersion = "22.11";
 
