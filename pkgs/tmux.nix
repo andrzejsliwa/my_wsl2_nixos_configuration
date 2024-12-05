@@ -23,7 +23,8 @@ in {
     terminal = "tmux-256color";
     historyLimit = 50000;
 
-    extraConfig = with config.theme; with pkgs.tmuxPlugins; ''
+    extraConfig = with config.theme;
+    with pkgs.tmuxPlugins; ''
       # Plugins
       run-shell '${copycat}/share/tmux-plugins/copycat/copycat.tmux'
       run-shell '${sensible}/share/tmux-plugins/sensible/sensible.tmux'

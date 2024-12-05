@@ -14,6 +14,7 @@
 
   # FIXME: change your shell here if you don't want fish
   programs.fish.enable = true;
+  programs.npm.enable = true;
   programs.nix-ld.enable = true;
   environment.pathsToLink = ["/share/fish"];
   environment.shells = [pkgs.fish];

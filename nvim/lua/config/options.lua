@@ -22,10 +22,12 @@ local opt = vim.opt
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 
-vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
-vim.keymap.set('n', '<space>rr', '<cmd>IronRestart<cr>')
-vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
-vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
+vim.api.nvim_set_keymap("n", "<leader>i", ":ASToggle<CR>", {})
+
+vim.keymap.set("n", "<space>rs", "<cmd>IronRepl<cr>")
+vim.keymap.set("n", "<space>rr", "<cmd>IronRestart<cr>")
+vim.keymap.set("n", "<space>rf", "<cmd>IronFocus<cr>")
+vim.keymap.set("n", "<space>rh", "<cmd>IronHide<cr>")
 
 vim.keymap.set("n", "<Leader>py", "<Cmd>!python %<CR>", { buffer = true, desc = ":!python %" })
 vim.keymap.set("n", "<Leader>pe", "<Cmd>!pipenv run python %<CR>", { buffer = true, desc = ":!pipenv run python %" })
@@ -33,13 +35,13 @@ vim.keymap.set("n", "<Leader>pi", function()
   vim.cmd(string.format([[TermExec cmd="python %s"]], vim.fn.expand("%:~:.")))
 end, { buffer = true, desc = "[ToggleTerm] python %" })
 
-vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('trim_whitespaces', { clear = true }),
-  desc = 'Trim trailing white spaces',
-  pattern = 'bash,c,cpp,lua,java,go,php,javascript,make,python,rust,perl,sql,markdown,nix,ruby',
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("trim_whitespaces", { clear = true }),
+  desc = "Trim trailing white spaces",
+  pattern = "bash,c,cpp,lua,java,go,php,javascript,make,python,rust,perl,sql,markdown,nix,ruby",
   callback = function()
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      pattern = '<buffer>',
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = "<buffer>",
       -- Trim trailing whitespaces
       callback = function()
         -- Save cursor position to restore later

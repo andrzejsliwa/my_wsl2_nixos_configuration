@@ -110,6 +110,7 @@
     shfmt
     statix # nix
 
+    yarn
     atuin
     nh
     nixfmt-classic

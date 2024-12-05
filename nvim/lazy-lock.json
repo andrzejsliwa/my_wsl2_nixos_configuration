@@ -19,7 +19,14 @@
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
   "git-worktree.nvim": { "branch": "main", "commit": "bac72c240b6bf1662296c31546c6dad89b4b7a3c" },
   "gitsigns.nvim": { "branch": "main", "commit": "5f808b5e4fef30bd8aca1b803b4e555da07fc412" },
+<<<<<<< Updated upstream
   "grug-far.nvim": { "branch": "main", "commit": "9a2f78219390b47d67795ab09390d7f092e23976" },
+||||||| Stash base
+  "grug-far.nvim": { "branch": "main", "commit": "8d0ad05760ee13e4e17dca19b2a1254eb335199a" },
+=======
+  "grug-far.nvim": { "branch": "main", "commit": "8d0ad05760ee13e4e17dca19b2a1254eb335199a" },
+  "gruvbox": { "branch": "master", "commit": "f1ecde848f0cdba877acb0c740320568252cc482" },
+>>>>>>> Stashed changes
   "harpoon": { "branch": "harpoon2", "commit": "a84ab829eaf3678b586609888ef52f7779102263" },
   "indent-blankline.nvim": { "branch": "master", "commit": "7871a88056f7144defca9c931e311a3134c5d509" },
   "iron.nvim": { "branch": "master", "commit": "e6b78ec1bc56eab63b3a9112d348b3d79836b672" },
