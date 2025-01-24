@@ -3,24 +3,14 @@ return {
   {
     "nvim-neotest/neotest",
     dependencies = {
-      "mwagg/neotest-minitest",
+      "zidhuss/neotest-minitest",
+      "olimorris/neotest-rspec",
     },
     config = function()
       require("neotest").setup({
         adapters = {
-          require("neotest-minitest")({
-            test_cmd = function()
-              return vim.tbl_flatten({
-                "bundle",
-                "exec",
-                "rails",
-                "test",
-              })
-            end,
-          }),
-          running = {
-            concurrent = false,
-          },
+          require("neotest-rspec"),
+          require("neotest-minitest"),
         },
       })
     end,

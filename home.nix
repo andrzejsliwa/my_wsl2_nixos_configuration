@@ -45,7 +45,6 @@
     zip
     speedtest-cli
     python3
-    neovim
     gh
     nodejs_20
     cargo
@@ -165,7 +164,7 @@ in {
   programs.neovim = {
     package = pkgs.unstable.neovim-unwrapped;
     enable = true;
-
+    withRuby = false;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
