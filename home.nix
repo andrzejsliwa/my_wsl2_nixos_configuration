@@ -82,7 +82,10 @@
     # libfido2
     # pam_u2f
     openssh
-    # gnupg
+    gnupg
+    age
+    sops
+    ngrok
     yubikey-manager
 
     # rust stuff
@@ -119,6 +122,8 @@
     nix-prefetch
     nix-prefetch-github
     jdk21_headless
+
+    cloudflared
   ];
 in {
   imports = [
